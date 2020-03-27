@@ -26,6 +26,51 @@ namespace Pierre.Controllers
                 return View();
             }
 
+            [HttpPost]
+            public ActionResult Create(Flavor flavor)
+            {
+                _db.Flavors.Add(flavor);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
+            public ActionResult Details(int id)
+            {
+                Flavor myFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+                return View(myFlavor);
+            }
+
+            [HttpPost]
+            public ActionResult Edit(int id)
+            {
+                Flavor myFlavor = _db.Flavors.FirstOrDefault(treat => treat.FlavorId == id);
+                return View(myFlavor);
+            }
+
+            public ActionResult AddTreat(int id)
+            {
+                return View();
+            }
+
+            [HttpPost]
+            public ActionResult AddTreat(Flavor Flavor)
+            {
+                return View();
+            }
+
+            public ActionResult Delete(int id)
+            {
+                Flavor myFlavor = _db.Flavors.FirstOrDefault(treat => treat.FlavorId == id);
+                return View(myFlavor);
+            }
+
+            [HttpPost, ActionName("Delete")]
+            public ActionResult DeleteConfirmed(int id)
+            {
+                Flavor myFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+                _db.Flavors.Remove(myFlavor);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
     }
