@@ -16,7 +16,16 @@ namespace Pierre.Controllers
                 _db = db; 
             }
 
-            
+            public ActionResult Index()
+            {
+                return View(_db.Flavors.ToList());
+            }
+
+            public ActionResult Create()
+            {
+                return View();
+            }
+
 
         }
     }
