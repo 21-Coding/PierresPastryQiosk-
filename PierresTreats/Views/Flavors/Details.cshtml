@@ -1,0 +1,36 @@
+@{
+    Layout = "_Layout";
+}
+@model Pierre.Models.Flavor
+
+<div class="row">
+      <div class="section-header">
+<div class="col-md-6 offset-md-3">
+  <div class="title-box">
+    <h3 class="text-center">Flavor Details For: </h3>
+    <h4 class="text-center">@Html.DisplayFor(model => model.FlavorName)</h4>
+  </div>
+
+  
+  @if(@Model.Treats.Count == 0)
+  {
+    <h4 class="text-center">Flavor has not been given to any Treats yet</h4>
+  }
+  else
+  {
+    <h4 class="text-center">This flavor can be paired with these treats  :</h4>
+    <div class="list-group" id="list-tab" role="tablist">
+    @foreach(var join in Model.Treats)
+    {
+      <div class="list-group-item list-group-item-action">
+        @Html.ActionLink($"{join.Treat.TreatName}", "Details", "Treats", new {id = join.Treat.TreatId}) 
+      </div>
+    }
+    </div>
+  }
+@if (User.Identity.IsAuthenticated)
+{
+  <div class="text-center buttons-bottom">
+    @await Html.PartialAsync("_FlavorButtons")
+  </div>
+}

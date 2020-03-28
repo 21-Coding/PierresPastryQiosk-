@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+@model Pierre.Models.Flavor
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h1 class="text-center">Create a new flavor here!</h1>
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                 <p>Flavor Name</p>
+                @Html.TextBoxFor(model => model.FlavorName, new {@class="form-control"})
+            </div>
+            <button type="submit" class="btn btn-success btn-block"> Add Flavor</button>
+        }
+    </div>
+</div>
+    

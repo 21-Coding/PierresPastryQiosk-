@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Pierre.Models;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameWorkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Pierre.Controllers

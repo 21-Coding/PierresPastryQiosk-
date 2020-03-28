@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Pierre.Models.Flavor
+
+<h2>Are you sure you want to delete @Html.DisplayNameFor(model => model.FlavorName): @Html.DisplayFor(model => model.FlavorName)?</h2>
+
+
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Delete" />
+}
+  

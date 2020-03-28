@@ -70,5 +70,22 @@ namespace Pierre.Controllers
         {
            
         }
+
+        public ActionResult Delete()
+        {
+            Treat myTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+            return View(myTreat);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Treat myTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+            _db.Treats.Remove(myTreat);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        
     }
 }

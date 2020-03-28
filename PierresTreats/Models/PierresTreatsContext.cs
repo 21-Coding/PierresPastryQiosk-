@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Pierre.Models
 {
-    public class PierresTreatsContext : IdentityDbContext<ApplicationUser>
+    public class PierresTreatsContext 
     {
         public virtual DbSet<Flavor> Flavors { get; set; }
         public DbSet<Treat> Treats { get; set; }
