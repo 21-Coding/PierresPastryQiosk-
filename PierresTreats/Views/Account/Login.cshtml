@@ -1,0 +1,27 @@
+@{
+    Layout = "_Layout";
+}
+
+@using Pierre.ViewModels;
+@model LoginViewModel;
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h3>Login here:</h3>
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                <p>Email:</p>
+                @Html.TextBoxFor(m => m.Email, new { @class="form-control", placeholder = "Email please."})
+            </div>
+
+            <div class="form-group">
+                <p>Password:</p>
+                @Html.PasswordFor(m => m.Password, new { @class="form-control", placeholder = "Password please."})
+            </div>
+
+                <input type="submit" value="Log in" class="btn btn-success btn-block" />
+        }
+    </div>
+</div>
+
+        
