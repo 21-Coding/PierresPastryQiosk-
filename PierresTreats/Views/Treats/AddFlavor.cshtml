@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Pierre.Models.Treat
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h1 class="text-center">Create Treat</h1>
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(model => model.TreatId)
+            <div class="form-group">
+               
+                @Html.Label("Select Flavor")
+                @Html.DropDownList("FlavorId", null, new { @class="form-control"})
+            </div>
+
+            <button type="submit" class="btn btn-info btn-block"> Add a Flavor </button>
+        }
+    </div>
+</div>
