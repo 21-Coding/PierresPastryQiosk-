@@ -1,0 +1,45 @@
+@{
+    Layout = "_Layout";
+}
+@model Pierre.Models.Treat
+
+<div class="row">
+    <div class="section-header">
+      <img src="https://source.unsplash.com/1600x900/?@Model.TreatName" alt="">
+    </div>
+<div class="col-md-8 offset-md-2">
+  <div class="title-box">
+    <h3 class="text-center">Treat Details For</h3>
+    <h4 class="text-center"> @Html.DisplayFor(model => model.TreatName)</h4>
+  </div>
+
+
+  @if(@Model.Flavors.Count == 0)
+  {
+    <h4 class="text-center">This treat has no Flavors</h4>
+    @Html.ActionLink("Add Flavor", "AddFlavor", "Treats", new {id = Model.TreatId}, new {@class="btn btn-info btn-block"})
+  }
+  else
+  {
+    <h3 class="text-center">Flavor Options:</h3>
+    <div class="list-group" id="list-tab" role="tablist">
+      @foreach(var join in Model.Flavors)
+      {
+        <div class="list-group-item list-group-item-action text-center">
+          Flavor : @join.Flavor.FlavorName
+          @using (Html.BeginForm("DeleteFlavor", "Treats"))
+          {
+            @Html.Hidden("joinId", @join.FlavorTreatId)
+            @Html.Hidden("treatId", @join.TreatId)
+            <input type="submit" value="Delete" class="btn btn-danger">
+          }
+        </div>
+      }
+    </div>
+  }
+  @if (User.Identity.IsAuthenticated)
+  {
+    <div class="text-center buttons-bottom">
+      @await Html.PartialAsync("_TreatButtons")
+    </div>
+  }
