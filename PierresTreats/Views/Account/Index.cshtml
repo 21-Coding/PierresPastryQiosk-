@@ -1,0 +1,30 @@
+@{
+    Layout = "_Layout";
+}
+
+@using System.Security.Claims
+<div class="row">
+   <div class="col-md-6 offset-md-3">
+       
+       <h1>User Account</h1>
+       @if (User.Identity.IsAuthenticated)
+       {
+           <p>Greetings @User.Identity.IsAuthenticated</p>
+           @using (Html.BeginForm("LogOff", "Account"))
+           {
+               <div class="text-center">
+                   <input type="submit" class="btn btn-danger" value="Log off" />
+               </div>
+           }
+       }
+       else
+       {
+           <div class="text-center">
+               @Html.ActionLink("Register", "Register")
+               @Html.ActionLink("Log in", "Login")
+               @Html.ActionLink("Home", "Index", "Home")
+           </div>
+       }
+
+   </div>
+</div>
