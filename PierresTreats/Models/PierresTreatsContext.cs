@@ -1,9 +1,9 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace BasicAuthentication.Models
 {
-    public class PierresTreatsContext
+    public class PierresTreatsContext : IdentityDbContext<ApplicationUser>
     {
         public virtual DbSet<Flavor> Flavors { get; set; }
         public DbSet<Treat> Treats { get; set; }
