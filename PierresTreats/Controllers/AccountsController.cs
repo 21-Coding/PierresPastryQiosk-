@@ -32,7 +32,7 @@ namespace Pierre.Controllers
         [HttpPost]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            var user new ApplicationUser { UserName = model.Email};
+            var user = new ApplicationUser { UserName = model.Email};
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
@@ -47,7 +47,7 @@ namespace Pierre.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(LoginViewModel model)
         {
-            Microsoft.AspNetCore.Identity.SignInResult result = await _signInMagager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
+            Microsoft.AspNetCore.Identity.signInResult result = await _signInMagager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
             if (result.Succeeded)
             {
                 return RedirectToAction("Index");
