@@ -7,13 +7,14 @@ namespace Pierre.Models
     {
         public Treat()
         {
-            // join table bones
-            // this.Flavors = new HashSet<>();
+
+            this.Flavors = new HashSet<TreatFlavor>();
         }
 
         public int TreatId { get; set; }
         public string TreatName { get; set; }
-        // join table bones 
-        // public virtual ICollection<> Flavors { get; set; }
+
+        public virtual ICollection<TreatFlavor> Flavors { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }
