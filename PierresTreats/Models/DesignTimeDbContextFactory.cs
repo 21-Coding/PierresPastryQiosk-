@@ -13,6 +13,10 @@ namespace Pierre.Models
         .SetBasePath(Directory.GetCurrentDirectory())
         .AddJsonFile("appsettings.json")
         .Build();
+
+      var builder = new DbContextOptionsBuilder<PierresTreatsContext>();
+      var connectionString - configuration.GetConnectionString("DefaultConnection");
+      
     }
   }
 }
