@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Pierre.ViewModels
 {
   public class RegisterViewModel
