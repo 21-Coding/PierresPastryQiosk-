@@ -7,6 +7,9 @@ namespace Pierre.Models
 {
   public class PierresTreatsContextFactory : IDesignTimeDbContextFactory<PierresTreatsContext>
   {
-    
+    PierresTreatsContext IDesignTimeDbContextFactory<PierresTreatsContext>.CreateDbContext()
+    {
+      
+    }
   }
 }
