@@ -15,8 +15,8 @@ namespace Pierre.Models
         .Build();
 
       var builder = new DbContextOptionsBuilder<PierresTreatsContext>();
-      var connectionString - configuration.GetConnectionString("DefaultConnection");
-      
+      var connectionString = configuration.GetConnectionString("DefaultConnection");
+
     }
   }
 }
