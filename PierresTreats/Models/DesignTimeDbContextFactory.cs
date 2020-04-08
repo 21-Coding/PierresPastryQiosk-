@@ -5,5 +5,8 @@ using System.IO;
 
 namespace Pierre.Models
 {
-
+  public class PierresTreatsContextFactory : IDesignTimeDbContextFactory<PierresTreatsContext>
+  {
+    
+  }
 }
