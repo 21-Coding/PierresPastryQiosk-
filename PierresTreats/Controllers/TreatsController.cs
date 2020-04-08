@@ -65,17 +65,17 @@ namespace Pierre.Controllers
             return View(myTreat);
         }
 
-        [HttpPost]
-        public ActionResult AddFlavor(Treat treat, int FlavorId)
-        {
-           
-        }
+        // [HttpPost]
+        // public ActionResult AddFlavor(Treat treat, int FlavorId)
+        // {
+        //
+        // }
 
-        public ActionResult Delete()
-        {
-            Treat myTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
-            return View(myTreat);
-        }
+        // public ActionResult Delete()
+        // {
+        //     Treat myTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+        //     return View(myTreat);
+        // }
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
@@ -86,6 +86,6 @@ namespace Pierre.Controllers
             return RedirectToAction("Index");
         }
 
-        
+
     }
 }

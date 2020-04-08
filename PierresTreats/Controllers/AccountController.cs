@@ -15,7 +15,7 @@ namespace Pierre.Controllers
         public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, PierresTreatsContext db)
         {
             _userManager = userManager;
-            _signInManager = _signInManager;
+            _signInManager = signInManager;
             _db = db;
         }
 

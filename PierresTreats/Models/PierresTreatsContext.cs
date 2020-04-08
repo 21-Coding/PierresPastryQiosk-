@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace BasicAuthentication.Models
+namespace Pierre.Models
 {
     public class PierresTreatsContext : IdentityDbContext<ApplicationUser>
     {
