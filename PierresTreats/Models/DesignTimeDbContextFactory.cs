@@ -9,6 +9,7 @@ namespace Pierre.Models
   {
     PierresTreatsContext IDesignTimeDbContextFactory<PierresTreatsContext>.CreateDbContext()
     {
+      IConfigurationRoot configuration = new ConfigurationBuilder()
       
     }
   }
