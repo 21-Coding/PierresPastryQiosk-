@@ -11,6 +11,7 @@ namespace Pierre.Models
     {
       IConfigurationRoot configuration = new ConfigurationBuilder()
         .SetBasePath(Directory.GetCurrentDirectory())
+        .AddJsonFile("appsettings.json")
     }
   }
 }
