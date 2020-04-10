@@ -90,13 +90,13 @@ namespace Pierre.Controllers
         }
         [Authorize]
         [HttpPost]
-        public ActionResult DeleteFlavor(int joinId, int treatId)
+        public ActionResult DeleteFlavor(int joinId, int TreatId)
         {
         TreatFlavor joinEntry = _db.TreatFlavor.FirstOrDefault(entry => entry.TreatFlavorId == joinId);
         _db.TreatFlavor.Remove(joinEntry);
         _db.SaveChanges();
 
-        return RedirectToAction("Details", "Treats", new { id = treatId });
+        return RedirectToAction("Details", "Treats", new { id = TreatId });
         }
 
         [Authorize]
