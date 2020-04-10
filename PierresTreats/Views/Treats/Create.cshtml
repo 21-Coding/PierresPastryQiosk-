@@ -13,6 +13,10 @@
           <p>Name</p>
           @Html.TextBoxFor(model => model.TreatName, new {@class="form-control"})
         </div>
+        <div class="form-group">
+          <p>Select a flavor</p>
+          @Html.DropDownList("FlavorId", null, new { @class="form-control"})
+        </div>
           
       }
     
