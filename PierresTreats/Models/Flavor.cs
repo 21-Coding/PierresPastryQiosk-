@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
+
 namespace Pierre.Models
 {
     public class Flavor
@@ -13,7 +14,7 @@ namespace Pierre.Models
         public int FlavorId { get; set; }
         public string FlavorName { get; set; }
 
-        public virtual ApplicationUser User { get; set; }
+     
         public ICollection<TreatFlavor> Treats { get; }
     }
 }
