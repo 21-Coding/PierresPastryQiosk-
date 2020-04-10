@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
+using System;
 using Microsoft.AspNetCore.Identity;
 using Pierre.Models;
 using System.Threading.Tasks;
 using Pierre.ViewModels;
+using System;
 
 namespace Pierre.Controllers
 {
@@ -23,11 +25,7 @@ namespace Pierre.Controllers
         {
             return View();
         }
-         public ActionResult Login()
-        {
-            return View();
-        }
-
+       
 
         public IActionResult Register()
         {
@@ -50,9 +48,15 @@ namespace Pierre.Controllers
             }
         }
 
+        public ActionResult Login()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<ActionResult> Login(LoginViewModel model)
         {
+            Console.WriteLine(model.Email, model.Password);
             Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
             if (result.Succeeded)
             {

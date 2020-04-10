@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
 using Pierre.Models;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Pierre.Controllers
 {
@@ -87,27 +90,27 @@ namespace Pierre.Controllers
         return View(thisTreat);
         }
 
-        [Authorize]
-        [HttpPost]
-        public ActionResult AddFlavor(Treat treat, int FlavorId)
-        {
-        if (FlavorId != 0)
-        {
-            _db.TreatFlavor.Add(new TreatFlavor() { FlavorId = FlavorId, TreatId = treat.TreatId });
-        }
-        _db.SaveChanges();
-        return RedirectToAction("Details", "Treats", new { id = treat.TreatId });
-        }
-        [Authorize]
-        [HttpPost]
-        public ActionResult DeleteFlavor(int joinId, int treatId)
-        {
-        TreatFlavor joinEntry = _db.TreatFlavor.FirstOrDefault(entry => entry.TreatFlavorId == joinId);
-        _db.TreatFlavor.Remove(joinEntry);
-        _db.SaveChanges();
+        // [Authorize]
+        // [HttpPost]
+        // public ActionResult AddFlavor(Treat treat, int FlavorId)
+        // {
+        // if (FlavorId != 0)
+        // {
+        //     _db.TreatFlavor.Add(new TreatFlavor() { FlavorId = FlavorId, TreatId = treat.TreatId });
+        // }
+        // _db.SaveChanges();
+        // return RedirectToAction("Details", "Treats", new { id = treat.TreatId });
+        // }
+        // [Authorize]
+        // [HttpPost]
+        // public ActionResult DeleteFlavor(int joinId, int treatId)
+        // {
+        // TreatFlavor joinEntry = _db.TreatFlavor.FirstOrDefault(entry => entry.TreatFlavorId == joinId);
+        // _db.TreatFlavor.Remove(joinEntry);
+        // _db.SaveChanges();
 
-        return RedirectToAction("Details", "Treats", new { id = treatId });
-        }
+        // return RedirectToAction("Details", "Treats", new { id = treatId });
+        // }
     }
 }
 
