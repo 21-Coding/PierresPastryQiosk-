@@ -47,17 +47,7 @@ namespace Pierre.Controllers
                 return View(myFlavor);
             }
 
-            public ActionResult AddTreat(int id)
-            {
-                return View();
-            }
-
-            [HttpPost]
-            public ActionResult AddTreat(Flavor Flavor)
-            {
-                return View();
-            }
-
+          
             public ActionResult Delete(int id)
             {
                 Flavor myFlavor = _db.Flavors.FirstOrDefault(treat => treat.FlavorId == id);
