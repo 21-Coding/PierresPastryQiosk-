@@ -131,19 +131,7 @@ New treats tracking application that uses user authentication and a many-to-many
   
   
 
-### Known Bugs
 
-  
-
-Database connection issues.
-
-  
-
-### Support Details
-
-  
-
-If you run into any issues running this application, please contact Dominique Youmans at ddyoumans@icloud.com.
 
   
 
