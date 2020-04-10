@@ -88,6 +88,16 @@ namespace Pierre.Controllers
         ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "FlavorName");
         return View(thisTreat);
         }
+        [Authorize]
+        [HttpPost]
+        public ActionResult DeleteFlavor(int joinId, int treatId)
+        {
+        TreatFlavor joinEntry = _db.TreatFlavor.FirstOrDefault(entry => entry.TreatFlavorId == joinId);
+        _db.TreatFlavor.Remove(joinEntry);
+        _db.SaveChanges();
+
+        return RedirectToAction("Details", "Treats", new { id = treatId });
+        }
 
         [Authorize]
         [HttpPost]
