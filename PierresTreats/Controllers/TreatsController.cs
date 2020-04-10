@@ -81,7 +81,6 @@ namespace Pierre.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         [Authorize]
         public ActionResult AddFlavor(int id)
         {
@@ -101,8 +100,7 @@ namespace Pierre.Controllers
         _db.SaveChanges();
         return RedirectToAction("Details", "Treats", new { id = treat.TreatId });
         }
-
-  
+            
     }
 }
 
