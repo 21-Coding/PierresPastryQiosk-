@@ -90,6 +90,18 @@ namespace Pierre.Controllers
         return View(thisTreat);
         }
 
+        [Authorize]
+        [HttpPost]
+        public ActionResult AddFlavor(Treat treat, int FlavorId)
+        {
+        if (FlavorId != 0)
+        {
+            _db.TreatFlavor.Add(new TreatFlavor() { FlavorId = FlavorId, TreatId = treat.TreatId });
+        }
+        _db.SaveChanges();
+        return RedirectToAction("Details", "Treats", new { id = treat.TreatId });
+        }
+
   
     }
 }

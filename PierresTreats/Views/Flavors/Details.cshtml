@@ -28,9 +28,3 @@
     }
     </div>
   }
-@if (User.Identity.IsAuthenticated)
-{
-  <div class="text-center buttons-bottom">
-    @await Html.PartialAsync("_FlavorButtons")
-  </div>
-}
