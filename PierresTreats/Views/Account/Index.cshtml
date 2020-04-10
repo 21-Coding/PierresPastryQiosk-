@@ -3,6 +3,7 @@
 }
 
 @using System.Security.Claims
+
 <div class="row">
    <div class="col-md-6 offset-md-3">
        
@@ -20,9 +21,14 @@
        else
        {
            <div class="text-center">
-               @Html.ActionLink("Register", "Register")
-               @Html.ActionLink("Log in", "Login")
-               @Html.ActionLink("Home", "Index", "Home")
+            
+               @Html.ActionLink("Create Account", "Register")
+
+               <p></p>
+               @Html.ActionLink("Already have an account?", "Login")
+
+              <br>
+               @Html.ActionLink("🏠", "Index", "Home")
            </div>
        }
 
