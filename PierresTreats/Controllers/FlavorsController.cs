@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Authorization;
+
 
 namespace Pierre.Controllers
-    {
-        [Authorize]
-        public class FlavorsController : Controller
+    {   
+    
+         public class FlavorsController : Controller
         {
             private readonly PierresTreatsContext _db;
 
@@ -24,12 +24,12 @@ namespace Pierre.Controllers
                 return View(_db.Flavors.ToList());
             }
 
-            [Authorize]
+   
             public ActionResult Create()
             {
                 return View();
             }
-            [Authorize]
+
             [HttpPost]
             public ActionResult Create(Flavor flavor)
             {
@@ -38,14 +38,13 @@ namespace Pierre.Controllers
                 return RedirectToAction("Index");
             }
 
-            [Authorize]
             public ActionResult Details(int id)
             {
                 Flavor myFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
                 return View(myFlavor);
             }
 
-            [Authorize]
+      
             [HttpPost]
             public ActionResult Edit(int id)
             {
@@ -54,14 +53,14 @@ namespace Pierre.Controllers
             }
 
 
-            [Authorize]
+     
             public ActionResult Delete(int id)
             {
                 Flavor myFlavor = _db.Flavors.FirstOrDefault(treat => treat.FlavorId == id);
                 return View(myFlavor);
             }
 
-            [Authorize]
+          
             [HttpPost, ActionName("Delete")]
             public ActionResult DeleteConfirmed(int id)
             {
