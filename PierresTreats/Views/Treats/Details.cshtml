@@ -28,9 +28,12 @@
           {
             @Html.Hidden("joinId", @join.TreatFlavorId)
             @Html.Hidden("treatId", @join.TreatId)
-            <input type="submit" value="Delete" class="btn btn-danger">
+        
           }
         </div>
       }
     </div>
+      <div class="text-center buttons-bottom">
+    @await Html.PartialAsync("_Treat")
+  </div>
   }
