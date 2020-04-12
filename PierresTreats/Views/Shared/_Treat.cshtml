@@ -1,14 +1,13 @@
-<div class="btn-group btn-group-toggle" data-toggle="buttons">
-  <label class="btn btn-warning">
-      @Html.ActionLink("Back to list", "Index")
-  </label>
-  <label class="btn btn-warning">
-      @Html.ActionLink("Edit Treat", "Edit", new { id = Model.TreatId })
-  </label>
-  <label class="btn btn-warning">
-      @Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId })
-  </label>
-  <label class="btn btn-warning">
-      @Html.ActionLink("Add a Flavor", "AddFlavor", new { id = Model.TreatId })
-  </label>
+   <button class="btn btn-outline-success bg-dark">
+      @Html.ActionLink("🍫 All Treats", "Index")
+    </button>
+  <button class="btn btn-outline-success bg-danger">
+      @Html.ActionLink("✍️ Edit Treat", "Edit", new { id = Model.TreatId })
+    </button>
+  <button class="btn btn-outline-success bg-warning">
+      @Html.ActionLink("➖", "Delete", new { id = Model.TreatId })
+    </button>
+  <button class="btn btn-outline-success bg-secondary">
+      @Html.ActionLink("➕", "AddFlavor", new { id = Model.TreatId })
+    </button>
 </div>
