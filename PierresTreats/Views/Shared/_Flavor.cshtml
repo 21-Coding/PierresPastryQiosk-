@@ -1,0 +1,13 @@
+   <button class="btn btn-outline-success bg-dark">
+      @Html.ActionLink("All Flavors", "Index")
+    </button>
+  <button class="btn btn-outline-success bg-danger">
+      @Html.ActionLink("✍️ Edit Flavors", "Edit", new { id = Model.TreatId })
+    </button>
+  <button class="btn btn-outline-success bg-warning">
+      @Html.ActionLink("➖", "Delete", new { id = Model.TreatId })
+    </button>
+  <button class="btn btn-outline-success bg-secondary">
+      @Html.ActionLink("➕", "AddTreat", new { id = Model.TreatId })
+    </button>
+</div>
