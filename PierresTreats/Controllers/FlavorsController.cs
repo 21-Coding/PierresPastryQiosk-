@@ -40,7 +40,10 @@ namespace Pierre.Controllers
 
             public ActionResult Details(int id)
             {
-                Flavor myFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+                var myFlavor = _db.Flavors
+                    .Include(flavor => flavor.Treats)
+                    .ThenInclude(join => join.Treat)
+                    .FirstOrDefault(flavor => flavor.FlavorId == id);
                 return View(myFlavor);
             }
 

@@ -24,22 +24,26 @@ namespace Pierre.Controllers
         }
 
         
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-        List<Treat> userTreats = _db.Treats.ToList();
+        var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var currentUser = await _userManager.FindByIdAsync(userId);
+        var userTreats = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).ToList();
         return View(userTreats);
         }
   
-        [Authorize] 
+        
         public ActionResult Create()
         {
         ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "FlavorName");
         return View();
         }
-    
+
+       
        [HttpPost]
         public async Task<ActionResult> Create(Treat treat, int FlavorId)
         {
+    
         var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         var currentUser = await _userManager.FindByIdAsync(userId);
         treat.User = currentUser;
@@ -48,21 +52,19 @@ namespace Pierre.Controllers
         {
             _db.TreatFlavor.Add(new TreatFlavor() { FlavorId = FlavorId, TreatId = treat.TreatId });
         }
-        _db.SaveChanges();
-        return RedirectToAction("Index");
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
   
       public ActionResult Details(int id)
         {
-        var thisTreat = _db.Treats
-            .Include(treat => treat.Flavors)
-            .ThenInclude(join => join.Flavor)
-            .Include(treat => treat.User)
-            .FirstOrDefault(treat => treat.TreatId == id);
-        var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        ViewBag.IsCurrentUser = userId != null ? userId == thisTreat.User.Id : false;
-        return View(thisTreat);
+            var thisFlavor = _db.Flavors
+                .Include(flavor => flavor.Treats)
+                .ThenInclude(join => join.Treat)
+                .FirstOrDefault(flavor => flavor.FlavorId == id);
+            return View(thisFlavor);
+        
         }
 
   
