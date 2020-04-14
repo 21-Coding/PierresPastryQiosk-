@@ -3,28 +3,29 @@ using Pierre.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 
 namespace Pierre.Controllers
-    {   
-    
+    {
+
          public class FlavorsController : Controller
         {
             private readonly PierresTreatsContext _db;
 
             public FlavorsController(PierresTreatsContext db)
             {
-                _db = db; 
+                _db = db;
             }
 
             public ActionResult Index()
-            {
-                return View(_db.Flavors.ToList());
-            }
+             {
+               List<Flavor> model = _db.Flavors.ToList();
+               return View(model);
+             }
 
-   
             public ActionResult Create()
             {
                 return View();
@@ -47,7 +48,7 @@ namespace Pierre.Controllers
                 return View(myFlavor);
             }
 
-      
+
             [HttpPost]
             public ActionResult Edit(int id)
             {
@@ -56,14 +57,14 @@ namespace Pierre.Controllers
             }
 
 
-     
+
             public ActionResult Delete(int id)
             {
                 Flavor myFlavor = _db.Flavors.FirstOrDefault(treat => treat.FlavorId == id);
                 return View(myFlavor);
             }
 
-          
+
             [HttpPost, ActionName("Delete")]
             public ActionResult DeleteConfirmed(int id)
             {

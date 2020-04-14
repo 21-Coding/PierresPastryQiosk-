@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Pierre.Models;
+
 using System.Threading.Tasks;
 using Pierre.ViewModels;
 using System;
@@ -56,7 +56,6 @@ namespace Pierre.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(LoginViewModel model)
         {
-            Console.WriteLine(model.Email, model.Password);
             Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
             if (result.Succeeded)
             {

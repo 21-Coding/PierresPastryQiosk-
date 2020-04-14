@@ -48,6 +48,19 @@ namespace PierresTreats.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Flavors",
+                columns: table => new
+                {
+                    FlavorId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    FlavorName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Flavors", x => x.FlavorId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -154,26 +167,6 @@ namespace PierresTreats.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Flavors",
-                columns: table => new
-                {
-                    FlavorId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    FlavorName = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Flavors", x => x.FlavorId);
-                    table.ForeignKey(
-                        name: "FK_Flavors_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Treats",
                 columns: table => new
                 {
@@ -255,11 +248,6 @@ namespace PierresTreats.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Flavors_UserId",
-                table: "Flavors",
-                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TreatFlavor_FlavorId",
