@@ -1,6 +1,7 @@
 @{
   Layout = "_Layout";
 }
+
 @using Pierre.Models;
 @using System.Security.Claims
 @model IEnumerable<Pierre.Models.Treat>
@@ -16,11 +17,7 @@
 
     @if (@Model.Any())
     {
-      <h3 class="text-center">No treats have been added yet!</h3>
-    }
-    else
-    {
-      <div class="list-group" id="list-tab" role="tablist">
+        <div class="list-group" id="list-tab" role="tablist">
         @foreach (Treat treat in Model)
         {
           <div class="list-group-item list-group-item-action">
@@ -29,6 +26,11 @@
           </div>
         }
       </div>
+    }
+    else
+    {
+      <h3 class="text-center">No treats have been added yet!</h3>
+    
     }
     <br>
     <br>

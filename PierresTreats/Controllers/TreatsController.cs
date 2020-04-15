@@ -59,35 +59,33 @@ namespace Pierre.Controllers
   
       public ActionResult Details(int id)
         {
-            var thisFlavor = _db.Flavors
-                .Include(flavor => flavor.Treats)
-                .ThenInclude(join => join.Treat)
-                .FirstOrDefault(flavor => flavor.FlavorId == id);
-            return View(thisFlavor);
+            var thisTreat = _db.Treats
+                .Include(treat => treat.Flavors)
+                .ThenInclude(join => join.Flavor)
+                .FirstOrDefault(treat => treat.TreatId == id);
+            return View(thisTreat);
         
         }
 
   
-       [Authorize]
+
         public async Task<ActionResult> Edit(int id)
         {
-        var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        var currentUser = await _userManager.FindByIdAsync(userId);
-        var thisTreat = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(treats => treats.TreatId == id);
-        if (thisTreat == null)
-        {
-            return RedirectToAction("Details", new {id = id});
-        }
-        ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "FlavorName"); 
-        return View(thisTreat);
+            if (FlavorId != 0)
+            {
+                _db.TreatFlavor.Add(new TreatFlavor() { FlavorId = FlavorId, TreatId = treat.TreatId });
+            }
+            _db.Entry(treat).State = EntityState.Modified;
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
     
         [HttpPost]
         public ActionResult Edit(Treat treat)
         {
-            _db.Entry(treat).State = EntityState.Modified;
-            _db.SaveChanges();
-            return RedirectToAction("Index");
+            var thisTreat = _db.Treats.FirstOrDefault(treats => treats.TreatId == id);
+            ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "FlavorName");
+            return View(thisTreat);
         }
 
 
@@ -104,43 +102,30 @@ namespace Pierre.Controllers
             return RedirectToAction("Index");
         }
   
-        [Authorize]
-        public async Task<ActionResult> AddFlavor(int id)
+    
+        public async ActionResult AddFlavor(int id)
         {
-        var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        var currentUser = await _userManager.FindByIdAsync(userId);
-        Treat thisTreat = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(treats => treats.TreatId == id);
-        if (thisTreat == null)
-        {
-            return RedirectToAction("Details", new {id = id});
-        }
-        ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "FlavorName");
-        return View(thisTreat);
+            var thisTreat = _db.Treats.FirstOrDefault(treats => treats.TreatId == id);
+            ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "FlavorName");
+            return View(thisTreat); 
         }
 
          [HttpPost]
         public ActionResult AddFlavor(Treat treat, int FlavorId)
         {
-        if (FlavorId != 0)
-        {
-            _db.TreatFlavor.Add(new TreatFlavor() { FlavorId = FlavorId, TreatId = treat.TreatId });
-        }
-        _db.SaveChanges();
-        return RedirectToAction("Index");
+            if (FlavorId != 0)
+            {
+                _db.TreatFlavor.Add(new TreatFlavor() { FlavorId = FlavorId, TreatId = treat.TreatId });
+            }
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
-        [Authorize]
-        public async Task<ActionResult> Delete(int id)
+      
+        public ActionResult Delete(int id)
         {
-        var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        var currentUser = await _userManager.FindByIdAsync(userId);
-
-        Treat thisTreat = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).FirstOrDefault(treats => treats.TreatId == id);
-        if (thisTreat == null)
-        {
-            return RedirectToAction("Details", new {id = id});
-        }
-        return View(thisTreat);
+            var thisTreat = _db.Treats.FirstOrDefault(treats => treats.TreatId == id);
+            return View(thisTreat);
         }
 
         [HttpPost]
