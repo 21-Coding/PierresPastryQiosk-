@@ -1,34 +1,28 @@
 @{
-    Layout = "_Layout";
+  Layout = "_Layout";
 }
-@model Pierre.Models.Flavor
 
-<div class="row">
-      <div class="section-header">
-<div class="col-md-6 offset-md-3">
-  <div class="title-box">
-    <h3 class="text-center">Flavor Details For: </h3>
-    <h4 class="text-center">@Html.DisplayFor(model => model.FlavorName)</h4>
-  </div>
+@model Pierre.Models.Flavor;
 
-  
-  @if(@Model.Treats.Count == 0)
+<h2>Flavor Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.FlavorName): @Html.DisplayFor(model => model.FlavorName)</h3>
+
+@if(@Model.Treats.Count == 0)
+{
+  <p>This flavor does not contain any treats</p>
+}
+else
+{
+  <h4>Treats the flavor contains:</h4>
+  <ul>
+  @foreach(var join in Model.Treats)
   {
-    <h4 class="text-center">Flavor has not been given to any Treats yet</h4>
+    <li>@join.Treat.TreatName</li>
   }
-  else
-  {
-    <h4 class="text-center">This flavor can be paired with these treats  :</h4>
-    <div class="list-group" id="list-tab" role="tablist">
-    @foreach(var join in Model.Treats)
-    {
-      <div class="list-group-item list-group-item-action">
-        @Html.ActionLink($"{join.Treat.TreatName}", "Details", "Treats", new {id = join.Treat.TreatId}) 
-      </div>
-    }
-    </div>
-    <div>
-       @await Html.PartialAsync("_Flavor");
-    </div>
-  }
-    
+  </ul>
+}
+
+<p>@Html.ActionLink("Back to flavors", "Index")</p>
+<p>@Html.ActionLink("Edit Flavor", "Edit", new { id = Model.FlavorId })</p>
+<p>@Html.ActionLink("Delete Flavor", "Delete", new { id = Model.FlavorId })</p>

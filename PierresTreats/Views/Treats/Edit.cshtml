@@ -4,18 +4,21 @@
 
 @model Pierre.Models.Treat
 
-<div class="row">
-  <div class="col-md-6 offset-md-3">
-    <h4 class="text-center">Edit this Treat: @Html.DisplayFor(model => model.TreatName)</h4>
+<h2>Edit</h2>
 
-    @using (Html.BeginForm())
-    {
-        @Html.HiddenFor(model => model.TreatId)
-      <div class="form-group">
-        @Html.LabelFor(model => model.TreatName)
-        @Html.EditorFor(model => model.TreatName, new { htmlAttributes = new {@class="form-control"}})
-      </div>
-        <input type="submit" value="Save" class="btn btn-default"/>
-    }
+<h4>Edit this treat: @Html.DisplayFor(model => model.TreatName)</h4>
 
-  </div>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.TreatId)
+
+    @Html.LabelFor(model => model.TreatName)
+    @Html.EditorFor(model => model.TreatName)
+
+    @Html.Label("Select flavor")
+    @Html.DropDownList("FlavorId")
+
+    <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>

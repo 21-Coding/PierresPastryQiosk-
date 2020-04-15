@@ -69,7 +69,16 @@ namespace Pierre.Controllers
 
   
 
-        public async Task<ActionResult> Edit(int id)
+        public ActionResult Edit(int id)
+        {
+            var thisTreat = _db.Treats.FirstOrDefault(treats => treats.TreatId == id);
+            ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "FlavorName");
+            return View(thisTreat);
+
+        }
+    
+        [HttpPost]
+        public ActionResult Edit(Treat treat, int FlavorId)
         {
             if (FlavorId != 0)
             {
@@ -78,14 +87,6 @@ namespace Pierre.Controllers
             _db.Entry(treat).State = EntityState.Modified;
             _db.SaveChanges();
             return RedirectToAction("Index");
-        }
-    
-        [HttpPost]
-        public ActionResult Edit(Treat treat)
-        {
-            var thisTreat = _db.Treats.FirstOrDefault(treats => treats.TreatId == id);
-            ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "FlavorName");
-            return View(thisTreat);
         }
 
 
@@ -96,14 +97,14 @@ namespace Pierre.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Treat myTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
-            _db.Treats.Remove(myTreat);
+            var thisTreat = _db.Treats.FirstOrDefault(treats => treats.TreatId == id);
+            _db.Treats.Remove(thisTreat);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
   
     
-        public async ActionResult AddFlavor(int id)
+        public ActionResult AddFlavor(int id)
         {
             var thisTreat = _db.Treats.FirstOrDefault(treats => treats.TreatId == id);
             ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "FlavorName");
@@ -121,13 +122,6 @@ namespace Pierre.Controllers
             return RedirectToAction("Index");
         }
 
-      
-        public ActionResult Delete(int id)
-        {
-            var thisTreat = _db.Treats.FirstOrDefault(treats => treats.TreatId == id);
-            return View(thisTreat);
-        }
-
         [HttpPost]
         public ActionResult DeleteFlavor(int joinId)
         {
@@ -136,6 +130,13 @@ namespace Pierre.Controllers
         _db.SaveChanges();
         return RedirectToAction("Index");
         }
+      
+        public ActionResult Delete(int id)
+        {
+            var thisTreat = _db.Treats.FirstOrDefault(treats => treats.TreatId == id);
+            return View(thisTreat);
+        }
+
     }
 }
 

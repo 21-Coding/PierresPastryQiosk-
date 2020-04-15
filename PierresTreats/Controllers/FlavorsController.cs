@@ -1,11 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Pierre.Models;
-using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 
 namespace Pierre.Controllers
@@ -47,20 +44,23 @@ namespace Pierre.Controllers
                     .FirstOrDefault(flavor => flavor.FlavorId == id);
                 return View(myFlavor);
             }
-
-
-            [HttpPost]
             public ActionResult Edit(int id)
             {
-                Flavor myFlavor = _db.Flavors.FirstOrDefault(treat => treat.FlavorId == id);
-                return View(myFlavor);
+                var thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+                return View(thisFlavor);
             }
 
-
+            [HttpPost]
+            public ActionResult Edit(Flavor flavor)
+            {
+                _db.Entry(flavor).State = EntityState.Modified;
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
             public ActionResult Delete(int id)
             {
-                Flavor myFlavor = _db.Flavors.FirstOrDefault(treat => treat.FlavorId == id);
+                var myFlavor = _db.Flavors.FirstOrDefault(treat => treat.FlavorId == id);
                 return View(myFlavor);
             }
 
@@ -68,7 +68,7 @@ namespace Pierre.Controllers
             [HttpPost, ActionName("Delete")]
             public ActionResult DeleteConfirmed(int id)
             {
-                Flavor myFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+                var myFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
                 _db.Flavors.Remove(myFlavor);
                 _db.SaveChanges();
                 return RedirectToAction("Index");

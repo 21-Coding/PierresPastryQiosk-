@@ -4,18 +4,17 @@
 
 @model Pierre.Models.Flavor
 
-<div class="row">
-  <div class="col-md-6 offset-md-3">
-    <h4 class="text-center">Edit this Flavor: @Html.DisplayFor(model => model.FlavorName)</h4>
+<h2>Edit</h2>
 
-    @using (Html.BeginForm())
-    {
-        @Html.HiddenFor(model => model.FlavorId)
-      <div class="form-group">
-        @Html.LabelFor(model => model.FlavorName)
-        @Html.EditorFor(model => model.FlavorName, new { htmlAttributes = new {@class="form-control"}})
-      </div>
-        <input type="submit" value="Save" class="btn btn-info btn-block"/>
-    }
+<h4>Edit this flavor: @Html.DisplayFor(model => model.FlavorName)</h4>
 
-  </div>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.FlavorId)
+
+    @Html.LabelFor(model => model.FlavorName)
+    @Html.EditorFor(model => model.FlavorName)
+
+    <input type="submit" value="Save" />
+}
+<p>@Html.ActionLink("Back to flavors", "Index")</p>
